@@ -3,7 +3,7 @@ pipeline{
 	stages{
 		stage('checkout')
 			steps{
-				git url:"https://github.com/", branch:"master"	
+				git url:"https://github.com/Sachin59314/Team1_dryrun_09_03.git", branch:"master"	
 			 }
 		stage('build & Test')
 			steps{
