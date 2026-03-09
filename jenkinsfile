@@ -1,0 +1,38 @@
+pipeline{
+	agent any
+	stages{
+		stage('checkout')
+			steps{
+				git url:"https://github.com/", branch:"master"	
+			 }
+		stage('build & Test')
+			steps{
+				// Which will be defined in the pom.xml 
+				sh "mvn clean package"
+				
+			 }
+		stage('Test')
+			steps{
+				// Which will be defined in the pom.xml 
+				sh "mvn test"
+				
+			 }
+
+		stage('Deploy')
+			steps{
+				
+			 }
+		stage('Integration Tests')
+			steps{
+				//The integration ytest will be ran
+				sh "./<testfiles>"
+			 }
+		}
+	post{
+		success{
+			echo " BUild Success"
+			}
+		failure{
+			echo "Build Failed"
+		}
+}
